@@ -51,14 +51,32 @@
                     "variables": {},
                     "resources": [
                         {
+                            "comments": "Storage with encryption for file and blob services",
                             "type": "Microsoft.Storage/storageAccounts",
-                            "apiVersion": "2017-10-01",
-                            "name": "[variables('storageName')]",
-                            "location": "[parameters('rgLocation')]",
-                            "kind": "StorageV2",
                             "sku": {
-                                "name": "Standard_LRS"
-                            }
+                                "name": "Standard_RAGRS",
+                                "tier": "Standard"
+                            },
+                            "kind": "Storage",
+                            "name": "[variables('storageName')]",
+                            "apiVersion": "2018-03-01-preview",
+                            "location": "[parameters('rgLocation')]",
+                            "tags": {},
+                            "scale": null,
+                            "properties": {
+                                "encryption": {
+                                    "services": {
+                                        "file": {
+                                            "enabled": true
+                                        },
+                                        "blob": {
+                                            "enabled": true
+                                        }
+                                    },
+                                    "keySource": "Microsoft.Storage"
+                                }
+                            },
+                            "dependsOn": []
                         }
                     ],
                     "outputs": {}
