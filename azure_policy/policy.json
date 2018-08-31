@@ -1,0 +1,27 @@
+{
+    "properties": {
+        "parameters": {
+            "listOfResourceTypesAllowed": {
+                "type": "array",
+                "metadata": {
+                    "description": "The list of resources that can be deployed in resource group",
+                    "strongType": "resourceTypes",
+                    "displayName": "Allowed resources"
+                }
+            }
+        },
+        "displayName": "Allowed resource types",
+        "description": "This policy enforces only 'compute', 'network' and 'storage' resource types.",
+        "policyRule": {
+            "if": {
+                "not": {
+                    "field": "type",
+                    "in": "[parameters('listOfResourceTypesAllowed')]"
+                }
+            },
+            "then": {
+                "effect": "deny"
+            }
+        }
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "properties": {
+        "displayName": "Allowed resources",
+        "parameters": {
+            "listOfResourceTypesAllowed": {
+                "value": [
+                    "Microsoft.Compute/virtualMachines",
+                    "Microsoft.Storage/storageAccounts",
+                    "Microsoft.Network/virtualNetworks"
+                ]
+            }
+        }
+    }
+}
+
+
