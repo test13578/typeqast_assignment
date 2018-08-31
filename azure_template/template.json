@@ -17,6 +17,9 @@
         },
         "tagCompany": {
             "type": "string"
+        },
+        "virtualNetworkName": {
+            "type": "string"
         }
     },
     "variables": {
@@ -75,6 +78,71 @@
                                     },
                                     "keySource": "Microsoft.Storage"
                                 }
+                            },
+                            "dependsOn": []
+                        },
+                        {
+                            "comments": "Virtual network with 3 subnets which are all subset of 172.16.0.0/12",
+                            "type": "Microsoft.Network/virtualNetworks",
+                            "name": "[parameters('virtualNetworkName')]",
+                            "apiVersion": "2018-02-01",
+                            "location": "[parameters('rgLocation')]",
+                            "properties": {
+                                "addressSpace": {
+                                    "addressPrefixes": [
+                                        "172.16.0.0/12"
+                                    ]
+                                },
+                                "subnets": [
+                                    {
+                                        "name": "vSubnet_1",
+                                        "properties": {
+                                            "addressPrefix": "172.16.0.0/24",
+                                            "serviceEndpoints": [
+                                                {
+                                                    "service": "Microsoft.Storage",
+                                                    "locations": [
+                                                        "westeurope",
+                                                        "northeurope"
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "vSubnet_2",
+                                        "properties": {
+                                            "addressPrefix": "172.16.1.0/24",
+                                            "serviceEndpoints": [
+                                                {
+                                                    "service": "Microsoft.Storage",
+                                                    "locations": [
+                                                        "westeurope",
+                                                        "northeurope"
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "vSubnet_3",
+                                        "properties": {
+                                            "addressPrefix": "172.16.2.0/24",
+                                            "serviceEndpoints": [
+                                                {
+                                                    "service": "Microsoft.Storage",
+                                                    "locations": [
+                                                        "westeurope",
+                                                        "northeurope"
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "virtualNetworkPeerings": [],
+                                "enableDdosProtection": false,
+                                "enableVmProtection": false
                             },
                             "dependsOn": []
                         }

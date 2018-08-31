@@ -16,6 +16,9 @@
         },
         "tagCompany": {
             "value": "Sentia"
+        },
+        "virtualNetworkName": {
+            "value": "sentiaVirtualNetwork"
         }
     }
 }
